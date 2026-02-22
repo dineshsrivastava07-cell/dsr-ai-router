@@ -1,0 +1,44 @@
+model_list:
+  # ── T1: Qwen2.5-Coder:7b (local Ollama) ─────────────────────
+  # haiku model names → Qwen 7B (fast, free, local)
+  - model_name: claude-haiku-4-5-20251001
+    litellm_params:
+      model: ollama/qwen3-coder:480b-cloud
+      api_base: http://localhost:11434
+
+  - model_name: claude-3-haiku-20240307
+    litellm_params:
+      model: ollama/qwen3-coder:480b-cloud
+      api_base: http://localhost:11434
+
+  # ── T2: Gemini CLI Bridge (Google OAuth, port 4001) ──────────
+  # sonnet model names → Gemini (free, account auth)
+  - model_name: claude-sonnet-4-6
+    litellm_params:
+      model: openai/gemini-proxy
+      api_base: http://localhost:4001
+      api_key: "none"
+
+  - model_name: claude-3-5-sonnet-20241022
+    litellm_params:
+      model: openai/gemini-proxy
+      api_base: http://localhost:4001
+      api_key: "none"
+
+  # ── T3: Real Claude via Anthropic (last resort) ──────────────
+  # opus model name → real Claude (account auth)
+  - model_name: claude-opus-4-6
+    litellm_params:
+      model: anthropic/claude-sonnet-4-6
+
+  # Explicit last resort alias
+  - model_name: claude-real
+    litellm_params:
+      model: anthropic/claude-sonnet-4-6
+
+litellm_settings:
+  drop_params: true
+  request_timeout: 120
+
+general_settings:
+  no_auth: true

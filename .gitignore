@@ -1,0 +1,10 @@
+logs/
+*.log
+*.pid
+__pycache__/
+*.pyc
+venv/
+.env
+.startup_*
+session.json
+routing_history.jsonl

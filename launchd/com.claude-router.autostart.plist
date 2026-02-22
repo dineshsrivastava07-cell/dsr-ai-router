@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  Claude AI Router — macOS LaunchAgent                          -->
+  <!--  Ensures Ollama + Qwen3 ready EVERY LOGIN on M1/M4 Mac        -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+
+  <key>Label</key>
+  <string>com.claude-router.autostart</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>-l</string>
+    <string>-c</string>
+    <string>~/.claude-router/scripts/autostart.sh</string>
+  </array>
+
+  <!-- Start at login -->
+  <key>RunAtLoad</key>
+  <true/>
+
+  <!-- Keep alive if it exits -->
+  <key>KeepAlive</key>
+  <false/>
+
+  <!-- Wait for network -->
+  <key>Sockets</key>
+  <dict/>
+
+  <!-- Environment Variables -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/opt/node/bin</string>
+    <key>HOME</key>
+    <string>/Users/dsr-ai-lab</string>
+  </dict>
+
+  <!-- Log stdout/stderr -->
+  <key>StandardOutPath</key>
+  <string>/Users/dsr-ai-lab/.claude-router/logs/launchd_stdout.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/dsr-ai-lab/.claude-router/logs/launchd_stderr.log</string>
+
+  <!-- Throttle restart if crashing -->
+  <key>ThrottleInterval</key>
+  <integer>30</integer>
+
+</dict>
+</plist>

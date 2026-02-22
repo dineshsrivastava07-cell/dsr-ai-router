@@ -1,0 +1,40 @@
+{
+  "routing": {
+    "always_try_t1_first": true,
+    "t1_timeout_seconds": 120,
+    "t2_timeout_seconds": 90,
+    "t3_timeout_seconds": 180,
+    "max_retries_per_tier": 2,
+    "escalate_on_failure": true,
+    "claude_is_last_resort": true
+  },
+  "tier1_ollama": {
+    "model": "qwen3-coder:480b-cloud",
+    "host": "http://localhost:11434",
+    "fallback_models": ["llama3.1:8b-instruct-q4_K_M", "gemma3:4b", "mistral:7b-instruct-v0.2-q4_0"],
+    "context_length": 32768,
+    "temperature": 0.1
+  },
+  "tier2_gemini": {
+    "default_model": "gemini-2.5-pro",
+    "models": [
+      "gemini-2.5-pro",
+      "gemini-2.5-flash",
+      "gemini-2.0-flash",
+      "gemini-2.0-pro",
+      "gemini-3-flash-preview",
+      "gemini-3-pro-preview"
+    ],
+    "auth_method": "account"
+  },
+  "tier3_claude": {
+    "use_only_as_last_resort": true,
+    "require_explicit_flag": false,
+    "default_model": "claude-sonnet-4-6",
+    "api_key_env": "ANTHROPIC_API_KEY"
+  },
+  "hardware": {
+    "ram_gb": 16,
+    "note": "Mac Mini 16GB — T1 uses qwen3-coder:480b-cloud (4.7 GB, local)"
+  }
+}
